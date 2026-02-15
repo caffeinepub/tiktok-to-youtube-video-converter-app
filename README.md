@@ -1,2 +1,3 @@
-# tiktok-to-youtube-video-converter-app
-Exported from Caffeine project: TikTok to YouTube Video Converter App
+## TikTok to YouTube Video Converter App
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component managing the multi-step conversion flow (idle, preset selection, converting, results) with state management and history refresh triggers.",
+  "frontend/src/components/BrandHeader.tsx": "Header component displaying the app logo, title, and tagline with consistent branding.",
+  "frontend/src/features/converter/EmptyStateHero.tsx": "Landing state component showing the hero illustration and introductory guidance for starting a conversion.",
+  "frontend/src/features/converter/ConverterForm.tsx": "Form component for TikTok URL input with validation and submission handling.",
+  "frontend/src/features/converter/validators.ts": "URL validation utilities for TikTok links with comprehensive error messaging.",
+  "frontend/src/features/converter/presets.ts": "Conversion preset definitions (YouTube Shorts 9:16 and Standard 16:9) with metadata.",
+  "frontend/src/features/converter/PresetPicker.tsx": "Preset selection UI with radio group cards displaying format options and specifications.",
+  "frontend/src/features/converter/DownloadPanel.tsx": "Conversion execution panel showing settings summary, progress, and download/cancel actions.",
+  "frontend/src/features/converter/useMp4Export.ts": "Hook managing client-side demo conversion with progress tracking (creates demo image frame as placeholder for actual video processing).",
+  "frontend/src/features/results/ResultsScreen.tsx": "Results screen displaying converted video preview, download button, and YouTube upload guidance.",
+  "frontend/src/features/results/uploadGuidance.ts": "Step-by-step instructions for manually uploading converted videos to YouTube.",
+  "frontend/src/features/history/historyTypes.ts": "TypeScript interfaces for conversion history entries.",
+  "frontend/src/features/history/historyStorage.ts": "LocalStorage utilities for persisting conversion history metadata (add, get, delete operations).",
+  "frontend/src/features/history/useHistory.ts": "React Query hook merging local and backend history with add/delete mutations (fixed to return Promise from mutationFn).",
+  "frontend/src/features/history/HistoryPanel.tsx": "History table component displaying past conversions with delete confirmation dialogs.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend data fetching (conversion history).",
+  "frontend/src/index.css": "Global styles with warm neutral OKLCH color palette (terracotta/amber/sand tones) for light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the warm neutral theme with custom shadows and consistent border radius."
+}

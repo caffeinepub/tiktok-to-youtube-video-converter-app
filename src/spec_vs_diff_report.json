@@ -1,0 +1,73 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T23:08:08.071Z",
+  "summary": "Core SPA flow, URL validation, preset selection UI, themed styling, and a conversion/history UX are implemented. However, the actual conversion/export does not produce an MP4 (it generates a JPEG), the results preview is an image rather than an in-browser video player, TikTok source retrieval is not implemented (explicitly described as a demo), and history deletion is only available for local entries (not synced/backend entries).",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Initiate retrieval of the source TikTok video for conversion after URL submission.",
+      "reason": "The conversion logic explicitly states it is a demo and does not retrieve TikTok video content; it generates a canvas image instead.",
+      "evidence": [
+        "frontend/src/features/converter/DownloadPanel.tsx",
+        "frontend/src/features/converter/useMp4Export.ts"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Export a downloadable YouTube-ready MP4 file (download completes successfully).",
+      "reason": "The export hook creates a JPEG blob (canvas.toBlob with 'image/jpeg') and the filename ends with .jpg; comments indicate MP4 is not produced.",
+      "evidence": [
+        "frontend/src/features/converter/useMp4Export.ts"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Results screen previews the converted video in-browser (playable preview).",
+      "reason": "The results preview renders an <img> element and describes it as a 'converted video frame' rather than using a <video> player.",
+      "evidence": [
+        "frontend/src/features/results/ResultsScreen.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Allow users to delete individual history entries from the UI.",
+      "reason": "Deletion UI appears only for non-backend entries; entries with ids starting with 'backend-' display 'Synced' and do not show delete actions. Backend actor also does not expose a delete method.",
+      "evidence": [
+        "frontend/src/features/history/HistoryPanel.tsx",
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/BrandHeader.tsx",
+    "frontend/src/features/converter/ConverterForm.tsx",
+    "frontend/src/features/converter/DownloadPanel.tsx",
+    "frontend/src/features/converter/EmptyStateHero.tsx",
+    "frontend/src/features/converter/PresetPicker.tsx",
+    "frontend/src/features/converter/presets.ts",
+    "frontend/src/features/converter/useMp4Export.ts",
+    "frontend/src/features/converter/validators.ts",
+    "frontend/src/features/history/HistoryPanel.tsx",
+    "frontend/src/features/history/historyStorage.ts",
+    "frontend/src/features/history/historyTypes.ts",
+    "frontend/src/features/history/useHistory.ts",
+    "frontend/src/features/results/ResultsScreen.tsx",
+    "frontend/src/features/results/uploadGuidance.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

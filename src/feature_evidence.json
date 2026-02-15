@@ -1,0 +1,130 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-single-page-app-that-lets-a-user-paste-a-tiktok-video-url-validates-the-url-and-initiates-retrieval-of-the-source-video-for-conversion",
+      "featureTitle": "Create a single-page app that lets a user paste a TikTok video URL, validates the URL, and initiates retrieval of the source video for conversion.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/converter/ConverterForm.tsx",
+        "frontend/src/features/converter/validators.ts",
+        "frontend/src/main.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-conversion-workflow-that-outputs-a-youtube-ready-mp4-file-and-allows-the-user-to-download-it-locally-no-automatic-upload-to-youtube-provide-basic-conversion-presets-for-common-youtube-formats-e-g-shorts-9-16-and-standard-16-9-and-show-the-chosen-output-settings-before-export",
+      "featureTitle": "Implement a conversion workflow that outputs a YouTube-ready MP4 file and allows the user to download it locally (no automatic upload to YouTube). Provide basic conversion presets for common YouTube formats (e.g., Shorts 9:16 and Standard 16:9) and show the chosen output settings before export.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/converter/DownloadPanel.tsx",
+        "frontend/src/features/converter/PresetPicker.tsx",
+        "frontend/src/features/converter/presets.ts",
+        "frontend/src/features/converter/useMp4Export.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-results-screen-that-previews-the-converted-video-in-browser-and-displays-practical-guidance-for-uploading-to-youtube-manually-step-by-step-text",
+      "featureTitle": "Add a results screen that previews the converted video in-browser and displays practical guidance for uploading to YouTube manually (step-by-step text).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/results/ResultsScreen.tsx",
+        "frontend/src/features/results/uploadGuidance.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-persist-a-lightweight-conversion-history-tiktok-url-timestamp-chosen-preset-output-filename-so-users-can-revisit-prior-conversions-from-the-ui-do-not-store-raw-video-bytes-on-the-backend",
+      "featureTitle": "Persist a lightweight conversion history (TikTok URL, timestamp, chosen preset, output filename) so users can revisit prior conversions from the UI. Do not store raw video bytes on the backend.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/history/HistoryPanel.tsx",
+        "frontend/src/features/history/historyStorage.ts",
+        "frontend/src/features/history/historyTypes.ts",
+        "frontend/src/features/history/useHistory.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-define-a-coherent-distinctive-visual-theme-for-the-app-colors-typography-spacing-component-styling-and-apply-it-consistently-across-all-screens-do-not-use-a-blue-purple-palette",
+      "featureTitle": "Define a coherent, distinctive visual theme for the app (colors, typography, spacing, component styling) and apply it consistently across all screens. Do not use a blue+purple palette.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-image-assets-logo-and-simple-hero-illustration-and-render-them-in-the-ui-e-g-header-logo-and-landing-empty-state-store-images-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend",
+      "featureTitle": "Add generated static image assets (logo and simple hero illustration) and render them in the UI (e.g., header/logo and landing/empty state). Store images under frontend/public/assets/generated and reference them directly from the frontend.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/BrandHeader.tsx",
+        "frontend/src/features/converter/EmptyStateHero.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

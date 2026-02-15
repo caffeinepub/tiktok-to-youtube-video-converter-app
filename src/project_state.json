@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a TikTok-to-YouTube video converter app.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal modern logo mark featuring a stylized play button and conversion arrows, warm neutral palette (tt2yt-logo.dim_512x512.png)\n- Flat illustration of a phone video transforming into a widescreen video frame, warm neutral palette, no text (tt2yt-hero.dim_1600x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-app-that-lets-a-user-paste-a-tiktok-video-url-validates-the-url-and-initiates-retrieval-of-the-source-video-for-conversion",
+      "title": "Create a single-page app that lets a user paste a TikTok video URL, validates the URL, and initiates retrieval of the source video for conversion.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-conversion-workflow-that-outputs-a-youtube-ready-mp4-file-and-allows-the-user-to-download-it-locally-no-automatic-upload-to-youtube-provide-basic-conversion-presets-for-common-youtube-formats-e-g-shorts-9-16-and-standard-16-9-and-show-the-chosen-output-settings-before-export",
+      "title": "Implement a conversion workflow that outputs a YouTube-ready MP4 file and allows the user to download it locally (no automatic upload to YouTube). Provide basic conversion presets for common YouTube formats (e.g., Shorts 9:16 and Standard 16:9) and show the chosen output settings before export.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-results-screen-that-previews-the-converted-video-in-browser-and-displays-practical-guidance-for-uploading-to-youtube-manually-step-by-step-text",
+      "title": "Add a results screen that previews the converted video in-browser and displays practical guidance for uploading to YouTube manually (step-by-step text).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-a-lightweight-conversion-history-tiktok-url-timestamp-chosen-preset-output-filename-so-users-can-revisit-prior-conversions-from-the-ui-do-not-store-raw-video-bytes-on-the-backend",
+      "title": "Persist a lightweight conversion history (TikTok URL, timestamp, chosen preset, output filename) so users can revisit prior conversions from the UI. Do not store raw video bytes on the backend.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-define-a-coherent-distinctive-visual-theme-for-the-app-colors-typography-spacing-component-styling-and-apply-it-consistently-across-all-screens-do-not-use-a-blue-purple-palette",
+      "title": "Define a coherent, distinctive visual theme for the app (colors, typography, spacing, component styling) and apply it consistently across all screens. Do not use a blue+purple palette.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-logo-and-simple-hero-illustration-and-render-them-in-the-ui-e-g-header-logo-and-landing-empty-state-store-images-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend",
+      "title": "Add generated static image assets (logo and simple hero illustration) and render them in the UI (e.g., header/logo and landing/empty state). Store images under frontend/public/assets/generated and reference them directly from the frontend.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an app that converts TikTok videos for uploading/using on YouTube.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "TikTok to YouTube Video Converter App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
