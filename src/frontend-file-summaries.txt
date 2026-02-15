@@ -1,7 +1,7 @@
 {
-  "frontend/src/App.tsx": "Main application component managing the multi-step conversion flow (idle, preset selection, converting, results) with state management and history refresh triggers.",
-  "frontend/src/components/BrandHeader.tsx": "Header component displaying the app logo, title, and tagline with consistent branding.",
-  "frontend/src/features/converter/EmptyStateHero.tsx": "Landing state component showing the hero illustration and introductory guidance for starting a conversion.",
+  "frontend/src/App.tsx": "Main application component managing the multi-step conversion flow with added \"Share & List\" tab in the idle state and footer social icons updated to real share-intent URLs.",
+  "frontend/src/components/BrandHeader.tsx": "Header component displaying the app logo, title, and tagline using centralized appDescription from appMetadata.",
+  "frontend/src/features/converter/EmptyStateHero.tsx": "Landing state component showing the hero illustration and introductory guidance, importing appName for consistency.",
   "frontend/src/features/converter/ConverterForm.tsx": "Form component for TikTok URL input with validation and submission handling.",
   "frontend/src/features/converter/validators.ts": "URL validation utilities for TikTok links with comprehensive error messaging.",
   "frontend/src/features/converter/presets.ts": "Conversion preset definitions (YouTube Shorts 9:16 and Standard 16:9) with metadata.",
@@ -16,5 +16,10 @@
   "frontend/src/features/history/HistoryPanel.tsx": "History table component displaying past conversions with delete confirmation dialogs.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for backend data fetching (conversion history).",
   "frontend/src/index.css": "Global styles with warm neutral OKLCH color palette (terracotta/amber/sand tones) for light and dark modes.",
-  "frontend/tailwind.config.js": "Tailwind configuration extending the warm neutral theme with custom shadows and consistent border radius."
+  "frontend/tailwind.config.js": "Tailwind configuration extending the warm neutral theme with custom shadows and consistent border radius.",
+  "frontend/src/appMetadata.ts": "Centralized app metadata constants (appName and appDescription) used consistently across header, hero, footer, and listing sections.",
+  "frontend/src/utils/shareLinks.ts": "Helper functions to build standard share-intent URLs for Facebook, X (Twitter), LinkedIn, and email with proper URL encoding.",
+  "frontend/src/features/market/ShareUtilities.tsx": "Component displaying the current app URL with one-click copy functionality and visible success feedback.",
+  "frontend/src/features/market/ListingSection.tsx": "Component presenting step-by-step instructions for listing the app in the Caffeine App Market with a CTA button opening caffeine.ai in a new tab.",
+  "frontend/src/features/market/ShareAndListPanel.tsx": "Composed panel combining ShareUtilities and ListingSection components for unified sharing and listing UI."
 }

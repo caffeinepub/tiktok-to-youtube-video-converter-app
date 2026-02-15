@@ -1,4 +1,5 @@
 import { Video } from 'lucide-react';
+import { appName, appDescription } from '@/appMetadata';
 
 export function BrandHeader() {
   return (
@@ -17,7 +18,7 @@ export function BrandHeader() {
                 <Video className="w-6 h-6 text-primary" />
               </h1>
               <p className="text-sm text-muted-foreground">
-                Convert TikTok videos for YouTube in seconds
+                {appDescription}
               </p>
             </div>
           </div>

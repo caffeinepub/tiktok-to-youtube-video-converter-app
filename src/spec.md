@@ -1,14 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Provide a single-page TikTok-to-YouTube converter that validates a TikTok URL, converts to a YouTube-ready MP4 using simple presets, previews the result, and maintains a lightweight conversion history.
+**Goal:** Add an App Market listing guide and sharing utilities so users can easily list and distribute the TikTok → YouTube Converter app.
 
 **Planned changes:**
-- Build a single-page flow to paste and validate a TikTok video URL, with clear error states and loading/progress indication.
-- Implement a conversion/export workflow that produces a downloadable MP4 (no YouTube upload), with presets for YouTube Shorts (9:16) and YouTube Standard (16:9) and a summary of selected output settings prior to export.
-- Add a results screen with in-browser preview of the converted video, English step-by-step manual upload guidance, and a “start over” action.
-- Persist conversion history (TikTok URL, timestamp, chosen preset, output filename) across reloads, allow deleting entries, and ensure no raw video bytes are stored in backend state.
-- Apply a consistent, distinctive visual theme across the app (avoiding a primary blue+purple palette) with prominent Convert/Export/Download actions.
-- Add and display generated static assets (logo and hero/empty-state illustration) served from `frontend/public/assets/generated`.
+- Add an in-app “Caffeine App Market listing” section with step-by-step English instructions and a prominent CTA that opens https://caffeine.ai/ in a new tab (noopener noreferrer).
+- Ensure the listing section is reachable from the main app UI without requiring authentication.
+- Add sharing utilities that display the current app URL and provide a one-click “Copy link” action with visible success feedback.
+- Update footer social icon links to use real share-intent URLs (opening in a new tab) that share the current app URL, with correct URL-encoding and no social API integrations.
+- Standardize app metadata (app name + one-sentence description) so it’s consistently shown in header/hero/footer and reused in the new listing section.
 
-**User-visible outcome:** Users can paste a TikTok URL, pick a YouTube output preset, convert and download an MP4, preview the converted result, follow instructions to upload to YouTube manually, and revisit/delete past conversions from a persistent history.
+**User-visible outcome:** Users can access a dedicated page/section explaining how to list the app on Caffeine (with a direct link to caffeine.ai), and can easily copy/share the live app URL via updated footer share links.

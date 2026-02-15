@@ -6,9 +6,12 @@ import { PresetPicker } from './features/converter/PresetPicker';
 import { DownloadPanel } from './features/converter/DownloadPanel';
 import { ResultsScreen } from './features/results/ResultsScreen';
 import { HistoryPanel } from './features/history/HistoryPanel';
+import { ShareAndListPanel } from './features/market/ShareAndListPanel';
 import { Card } from './components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
-import { SiFacebook, SiX, SiInstagram } from 'react-icons/si';
+import { SiFacebook, SiX, SiLinkedin } from 'react-icons/si';
+import { buildFacebookShareUrl, buildXShareUrl, buildLinkedInShareUrl } from './utils/shareLinks';
+import { appName } from './appMetadata';
 
 type AppStep = 'idle' | 'preset-selection' | 'converting' | 'results';
 
@@ -57,6 +60,9 @@ function App() {
     setStep('idle');
   };
 
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareText = `Check out ${appName}!`;
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <BrandHeader />
@@ -100,11 +106,15 @@ function App() {
         {step === 'idle' && (
           <div className="mt-12">
             <Tabs defaultValue="history" className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-1">
+              <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-2">
                 <TabsTrigger value="history">Conversion History</TabsTrigger>
+                <TabsTrigger value="share">Share & List</TabsTrigger>
               </TabsList>
               <TabsContent value="history" className="mt-6">
                 <HistoryPanel key={historyRefreshKey} />
+              </TabsContent>
+              <TabsContent value="share" className="mt-6">
+                <ShareAndListPanel />
               </TabsContent>
             </Tabs>
           </div>
@@ -115,7 +125,7 @@ function App() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} TikTok to YouTube Converter. Built with ❤️ using{' '}
+              © {new Date().getFullYear()} {appName}. Built with ❤️ using{' '}
               <a
                 href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
                   typeof window !== 'undefined' ? window.location.hostname : 'tt2yt-converter'
@@ -129,25 +139,31 @@ function App() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href={buildFacebookShareUrl(currentUrl)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Facebook"
+                aria-label="Share on Facebook"
               >
                 <SiFacebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={buildXShareUrl(currentUrl, shareText)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="X (Twitter)"
+                aria-label="Share on X (Twitter)"
               >
                 <SiX className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={buildLinkedInShareUrl(currentUrl)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Instagram"
+                aria-label="Share on LinkedIn"
               >
-                <SiInstagram className="w-5 h-5" />
+                <SiLinkedin className="w-5 h-5" />
               </a>
             </div>
           </div>

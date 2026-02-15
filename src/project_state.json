@@ -1,11 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 5,
   "summary": "Build a TikTok-to-YouTube video converter app.",
-  "architectural_notes": [],
+  "architectural_notes": [
+    "Plan for App Market listing/submission workflow (metadata, publishing, and distribution link)."
+  ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Minimal modern logo mark featuring a stylized play button and conversion arrows, warm neutral palette (tt2yt-logo.dim_512x512.png)\n- Flat illustration of a phone video transforming into a widescreen video frame, warm neutral palette, no text (tt2yt-hero.dim_1600x900.png)",
   "existing_features": [
     {
       "id": "feature-create-a-single-page-app-that-lets-a-user-paste-a-tiktok-video-url-validates-the-url-and-initiates-retrieval-of-the-source-video-for-conversion",
@@ -54,12 +55,42 @@
         "REQ-6"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-an-in-app-section-that-helps-the-user-list-the-tiktok-youtube-converter-app-in-the-caffeine-app-market-including-clear-step-by-step-instructions-and-a-prominent-call-to-action-that-opens-caffeine-ai-in-a-new-tab-for-completing-the-listing",
+      "title": "Add an in-app section that helps the user list the TikTok → YouTube Converter app in the Caffeine App Market, including clear step-by-step instructions and a prominent call-to-action that opens caffeine.ai in a new tab for completing the listing.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-sharing-utilities-to-make-the-live-app-easy-to-distribute-show-the-current-app-url-provide-a-one-click-copy-link-action-and-replace-the-footer-social-icons-placeholder-hrefs-with-real-share-intent-urls-that-share-the-current-app-url",
+      "title": "Add sharing utilities to make the live app easy to distribute: show the current app URL, provide a one-click 'Copy link' action, and replace the footer social icons’ placeholder (#) hrefs with real share-intent URLs that share the current app URL.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-app-metadata-content-where-appropriate-so-the-app-presents-well-for-an-app-market-audience-ensure-the-app-name-and-a-short-description-are-consistently-presented-in-the-header-hero-footer-and-can-be-reused-in-the-new-listing-section",
+      "title": "Update app metadata/content where appropriate so the app presents well for an App Market audience: ensure the app name and a short description are consistently presented in the header/hero/footer and can be reused in the new listing section.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
     {
       "id": "AR-1",
       "summary": "Create an app that converts TikTok videos for uploading/using on YouTube.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Submit/list the app in the Caffeine App Market so it can be shared and potentially monetized (airdrop eligibility).",
       "reqIds": [],
       "status": "pending"
     }

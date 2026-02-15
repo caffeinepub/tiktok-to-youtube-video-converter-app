@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { appName } from '@/appMetadata';
 
 export function EmptyStateHero() {
   return (

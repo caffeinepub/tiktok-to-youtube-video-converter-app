@@ -1,203 +1,98 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "TikTok → YouTube Converter (Frontend)",
+  "title": "Add App Market listing section and share utilities",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Single-page converter flow with TikTok URL input, validation, and retrieval/prep state.",
+      "id": "REQ-7",
+      "summary": "Add an in-app App Market listing section with step-by-step instructions and a CTA that opens caffeine.ai in a new tab.",
       "acceptanceCriteria": [
-        "A user can paste a TikTok URL and click a primary action to proceed.",
-        "The UI shows clear validation errors for empty/invalid URLs.",
-        "The UI indicates loading/progress while retrieval/prep is happening."
+        "When the user views the listing section, they see step-by-step instructions written in English for listing the app in the Caffeine App Market.",
+        "A CTA button/link is present and opens https://caffeine.ai/ in a new tab (noopener noreferrer).",
+        "The listing section is reachable from the main app UI without requiring authentication."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/features/market/ListingSection.tsx",
           "operation": "create",
-          "description": "Create the single-page converter shell with step-based UI (URL input → preset selection → conversion → results), including primary action to proceed and visible loading/progress states. Use shadcn-ui components (e.g., Button/Input/Card/Alert/Progress) to ensure consistent interactions; verify the component's usage instructions before implementing."
+          "description": "Create a reusable listing section UI that: (1) presents step-by-step English instructions for listing the app in the Caffeine App Market, (2) reuses the centralized app name/description (from REQ-9), and (3) includes a prominent CTA opening https://caffeine.ai/ in a new tab with rel=\"noopener noreferrer\". Use shadcn-ui components (e.g., Card/Button/Separator) for layout and emphasis. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/features/converter/validators.ts",
+          "path": "frontend/src/features/market/ShareAndListPanel.tsx",
           "operation": "create",
-          "description": "Add TikTok URL validation helpers (empty check, basic URL parse/host/path heuristics) used by the input form to produce user-friendly validation messages."
-        },
-        {
-          "path": "frontend/src/features/converter/useRetrieveSource.ts",
-          "operation": "create",
-          "description": "Implement a frontend-only 'retrieve/prep' hook that attempts to prepare a source video URL for conversion (with clear failure messaging when cross-origin/platform restrictions prevent retrieval), and exposes loading/progress state for the UI."
-        },
-        {
-          "path": "frontend/src/features/converter/ConverterForm.tsx",
-          "operation": "create",
-          "description": "Create the URL input form component with inline validation errors and a prominent primary action. Use shadcn-ui form primitives where available; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/main.tsx",
-          "operation": "modify",
-          "description": "Ensure the app renders the newly created App component (if needed) and that global providers remain intact while enabling the new single-page converter flow."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Client-side conversion workflow with YouTube-ready MP4 export, preset selection (Shorts/Standard), and clear non-upload messaging.",
-      "acceptanceCriteria": [
-        "The user can choose between at least two presets: YouTube Shorts (9:16) and YouTube Standard (16:9).",
-        "The app can export a downloadable MP4 file and the download completes successfully.",
-        "The UI displays the selected preset and key output settings (resolution/aspect) prior to export.",
-        "The app clearly states that YouTube upload is not performed by the app."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/converter/presets.ts",
-          "operation": "create",
-          "description": "Define at least two conversion presets (YouTube Shorts 9:16 and YouTube Standard 16:9) including human-readable name and key output settings (aspect/resolution targets) for display prior to export."
-        },
-        {
-          "path": "frontend/src/features/converter/PresetPicker.tsx",
-          "operation": "create",
-          "description": "Add preset selection UI and a settings summary panel that shows chosen preset and key output settings before export. Use shadcn-ui components (e.g., RadioGroup/Select/Badge/Card) for accessible selection; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/converter/useMp4Export.ts",
-          "operation": "create",
-          "description": "Implement the client-side conversion/export hook that produces an MP4 Blob (e.g., via a browser-based transcoding pipeline) and exposes export progress plus the final downloadable object URL."
-        },
-        {
-          "path": "frontend/src/features/converter/DownloadPanel.tsx",
-          "operation": "create",
-          "description": "Create the export/download UI: shows preset summary, an explicit message that the app does not upload to YouTube, and a Download button that saves the MP4 locally. Use shadcn-ui components (Button/Alert) to make key actions prominent; verify the component's usage instructions before implementing."
+          "description": "Create a composed panel that renders the new ListingSection alongside the sharing utilities UI (from REQ-8) so both are reachable from the main app UI without authentication. Use shadcn-ui components for consistent styling. Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire preset selection, conversion/export execution, and download flow into the main step-based experience, ensuring settings are displayed prior to export and YouTube upload is explicitly out of scope."
+          "description": "Wire the new ShareAndListPanel into the existing main app UI (no authentication required) by adding an additional tab/section alongside the existing idle-state content (e.g., in the existing Tabs area currently used for history), ensuring the listing section is discoverable from the primary UI flow. Use existing shadcn-ui Tabs components. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-3",
-      "summary": "Results screen with in-browser preview of the converted MP4, manual YouTube upload guidance, and a clear reset/start-over action.",
+      "id": "REQ-8",
+      "summary": "Add sharing utilities: display current app URL, provide one-click copy with success feedback, and update footer icons to real share-intent links for the current URL.",
       "acceptanceCriteria": [
-        "After conversion, the user can play a preview of the converted video.",
-        "A clear set of upload instructions is displayed in English.",
-        "There is an obvious way to start over with a new TikTok URL."
+        "A 'Copy link' control copies window.location.href and provides visible success feedback.",
+        "Footer social icons no longer use href=\"#\" and instead open share-intent URLs in a new tab with the app URL prefilled.",
+        "All generated share URLs correctly URL-encode the app URL.",
+        "No social-media API integrations are used (only standard share-intent links)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/features/results/ResultsScreen.tsx",
+          "path": "frontend/src/utils/shareLinks.ts",
           "operation": "create",
-          "description": "Create the results screen component that renders an HTML5 video preview using the converted MP4 object URL, shows download status, and includes a prominent Start Over action. Use shadcn-ui components (Card/Button/Separator) for consistent layout; verify the component's usage instructions before implementing."
+          "description": "Add small, reusable helpers to build standard share-intent URLs (e.g., Facebook sharer, X intent, LinkedIn share, and/or mailto) from a provided app URL and optional text. Ensure the app URL is URL-encoded via encodeURIComponent and that helpers return fully-formed URLs suitable for opening in a new tab. (No social-media API integrations.)"
         },
         {
-          "path": "frontend/src/features/results/uploadGuidance.ts",
+          "path": "frontend/src/features/market/ShareUtilities.tsx",
           "operation": "create",
-          "description": "Add step-by-step English text guidance for manually uploading to YouTube (including choosing Shorts vs Standard, adding title/description, and selecting visibility), with wording that avoids implying automated upload."
+          "description": "Create a sharing utilities component that: (1) displays the current app URL (window.location.href), (2) provides a one-click \"Copy link\" action using navigator.clipboard when available (with a safe fallback), and (3) shows visible success feedback (e.g., \"Copied\" state/message) after copying. Use shadcn-ui components (e.g., Card/Button) for UI consistency. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/market/ShareAndListPanel.tsx",
+          "operation": "modify",
+          "description": "Compose the ShareUtilities component into the shared panel (alongside ListingSection). Ensure copy feedback is clearly visible in the panel and that the current URL is shown. Use shadcn-ui components for layout. Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Show the ResultsScreen after conversion completes and wire Start Over to reset the state (URL, preset, progress, and generated object URLs) for a new conversion."
+          "description": "Replace footer social icon placeholder href=\"#\" links with real share-intent URLs built from the current app URL (window.location.href), opened in a new tab with rel=\"noopener noreferrer\". Ensure all share URLs URL-encode the app URL and do not use any third-party integrations—only standard intent links. If any existing platform icon cannot support a standard web share intent, swap it for a platform that can while keeping the footer \"social icons\" concept intact."
         }
       ]
     },
     {
-      "id": "REQ-4",
-      "summary": "Persist lightweight conversion history (metadata only) across reloads, display it in the UI, and allow per-entry deletion without storing raw video bytes.",
+      "id": "REQ-9",
+      "summary": "Centralize and consistently display the app name and short description in header/hero/footer and reuse them in the listing section.",
       "acceptanceCriteria": [
-        "After a conversion completes, a history entry is saved and appears in a History section.",
-        "History entries persist across page reloads.",
-        "Backend data does not store video file contents (only metadata).",
-        "A user can delete individual history entries from the UI."
+        "The app name and a short one-sentence description are displayed consistently and reused in the listing section without duplicating conflicting copy.",
+        "All user-facing text is in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/features/history/historyTypes.ts",
+          "path": "frontend/src/appMetadata.ts",
           "operation": "create",
-          "description": "Define frontend history entry types aligned with required metadata fields (TikTok URL, timestamp, chosen preset, output filename) and explicitly exclude any raw video byte storage."
-        },
-        {
-          "path": "frontend/src/features/history/historyStorage.ts",
-          "operation": "create",
-          "description": "Implement local persistence (e.g., localStorage) for conversion history metadata only, including add/list/delete operations and reload hydration."
-        },
-        {
-          "path": "frontend/src/features/history/useHistory.ts",
-          "operation": "create",
-          "description": "Create a hook that reads/writes locally persisted history and (where available) reads backend-provided metadata via the existing backend interface types, without attempting to store or persist raw video bytes."
-        },
-        {
-          "path": "frontend/src/features/history/HistoryPanel.tsx",
-          "operation": "create",
-          "description": "Add a History section that lists prior conversions (URL, timestamp, preset, filename) and provides a per-entry Delete control. Use shadcn-ui components (Table/List, Button, AlertDialog) for consistent UI/confirmation; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wire history creation on successful conversion completion, render the HistoryPanel within the single-page layout, and ensure deletion updates both UI and local persistence (metadata only)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Apply a consistent warm-neutral visual theme (non blue+purple) with accessible, prominent primary actions across converter flow, results, and history.",
-      "acceptanceCriteria": [
-        "The UI uses a consistent, intentional theme across the converter flow and history view.",
-        "The theme avoids a primary blue+purple aesthetic.",
-        "Key actions (Convert/Export/Download) are visually prominent and accessible."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "create",
-          "description": "Create/define global theme tokens (CSS variables used by Tailwind/shadcn-ui) using a warm-neutral palette (e.g., sand/amber/terracotta/charcoal) and consistent typography/spacing; ensure primary actions have high contrast and are not blue+purple."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Adjust Tailwind theme extension (if needed) to support the warm-neutral brand palette and consistent radius/shadows used across screens, while keeping compatibility with shadcn-ui styling conventions."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Ensure layout (header/main/footer), spacing scale, and component styling usage are consistent across the converter flow, results, and history, with visually prominent Convert/Export/Download actions using shadcn-ui components; verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Add and render generated static logo and hero illustration from frontend/public/assets/generated.",
-      "acceptanceCriteria": [
-        "The app includes and displays the generated logo image.",
-        "The app includes and displays the generated hero/empty-state illustration image.",
-        "Images are served as static assets from frontend/public/assets/generated (not via backend)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/tt2yt-logo.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated logo asset at frontend/public/assets/generated/tt2yt-logo.dim_512x512.png and ensure it is referenced directly as a static asset in the UI."
-        },
-        {
-          "path": "frontend/public/assets/generated/tt2yt-hero.dim_1600x900.png",
-          "operation": "create",
-          "description": "Add the generated hero/empty-state illustration at frontend/public/assets/generated/tt2yt-hero.dim_1600x900.png and ensure it is referenced directly as a static asset in the UI."
+          "description": "Create a single source of truth for app metadata used throughout the UI (e.g., exported constants for appName and appDescription in English) so header/hero/footer and the listing section can reuse consistent copy without duplication."
         },
         {
           "path": "frontend/src/components/BrandHeader.tsx",
-          "operation": "create",
-          "description": "Create a header component that renders the generated logo (frontend/public/assets/generated/tt2yt-logo.dim_512x512.png) and app title/tagline. Use shadcn-ui layout primitives where appropriate; verify the component's usage instructions before implementing."
+          "operation": "modify",
+          "description": "Update BrandHeader to import and display the centralized appName and appDescription from frontend/src/appMetadata.ts (English only), ensuring consistent branding. Keep existing generated logo usage intact (frontend/public/assets/generated/tt2yt-logo.dim_512x512.png)."
         },
         {
           "path": "frontend/src/features/converter/EmptyStateHero.tsx",
-          "operation": "create",
-          "description": "Create an empty/landing state component that renders the generated hero illustration (frontend/public/assets/generated/tt2yt-hero.dim_1600x900.png) alongside short guidance for starting a conversion. Use shadcn-ui components for consistent composition; verify the component's usage instructions before implementing."
+          "operation": "modify",
+          "description": "Update the hero section to reuse the centralized appName and/or appDescription from frontend/src/appMetadata.ts where appropriate, keeping all user-facing text in English and consistent with the header/footer. Keep existing generated hero image usage intact (frontend/public/assets/generated/tt2yt-hero.dim_1600x900.png)."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire BrandHeader into the top of the single-page layout and show the EmptyStateHero when no conversion is in progress (e.g., before a valid URL is submitted)."
+          "description": "Update footer copy to use the centralized appName and appDescription (as appropriate) from frontend/src/appMetadata.ts so the app presents consistently for an App Market audience. Ensure all user-facing text remains in English and does not conflict with the header/hero copy."
+        },
+        {
+          "path": "frontend/src/features/market/ListingSection.tsx",
+          "operation": "modify",
+          "description": "Ensure the listing section reuses the centralized appName and appDescription from frontend/src/appMetadata.ts (instead of hardcoding potentially conflicting copy) while still presenting clear step-by-step listing instructions in English. Use shadcn-ui components for consistency. Verify the component's usage instructions before implementing."
         }
       ]
     }
