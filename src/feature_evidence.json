@@ -2,12 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-an-in-app-section-that-helps-the-user-list-the-tiktok-youtube-converter-app-in-the-caffeine-app-market-including-clear-step-by-step-instructions-and-a-prominent-call-to-action-that-opens-caffeine-ai-in-a-new-tab-for-completing-the-listing",
-      "featureTitle": "Add an in-app section that helps the user list the TikTok → YouTube Converter app in the Caffeine App Market, including clear step-by-step instructions and a prominent call-to-action that opens caffeine.ai in a new tab for completing the listing.",
+      "featureId": "feature-enhance-the-in-app-caffeine-app-market-listing-section-so-the-user-can-quickly-submit-the-app-by-adding-a-one-click-action-to-copy-the-required-submission-details-app-name-app-description-and-the-live-app-url-to-the-clipboard-with-clear-success-failure-feedback",
+      "featureTitle": "Enhance the in-app Caffeine App Market listing section so the user can quickly submit the app by adding a one-click action to copy the required submission details (app name, app description, and the live app URL) to the clipboard, with clear success/failure feedback.",
       "files": [
-        "frontend/src/App.tsx",
         "frontend/src/features/market/ListingSection.tsx",
-        "frontend/src/features/market/ShareAndListPanel.tsx"
+        "frontend/src/utils/clipboard.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -17,50 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-sharing-utilities-to-make-the-live-app-easy-to-distribute-show-the-current-app-url-provide-a-one-click-copy-link-action-and-replace-the-footer-social-icons-placeholder-hrefs-with-real-share-intent-urls-that-share-the-current-app-url",
-      "featureTitle": "Add sharing utilities to make the live app easy to distribute: show the current app URL, provide a one-click 'Copy link' action, and replace the footer social icons’ placeholder (#) hrefs with real share-intent URLs that share the current app URL.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/features/market/ShareAndListPanel.tsx",
-        "frontend/src/features/market/ShareUtilities.tsx",
-        "frontend/src/utils/shareLinks.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-app-metadata-content-where-appropriate-so-the-app-presents-well-for-an-app-market-audience-ensure-the-app-name-and-a-short-description-are-consistently-presented-in-the-header-hero-footer-and-can-be-reused-in-the-new-listing-section",
-      "featureTitle": "Update app metadata/content where appropriate so the app presents well for an App Market audience: ensure the app name and a short description are consistently presented in the header/hero/footer and can be reused in the new listing section.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/appMetadata.ts",
-        "frontend/src/components/BrandHeader.tsx",
-        "frontend/src/features/converter/EmptyStateHero.tsx",
-        "frontend/src/features/market/ListingSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
+        "REQ-10"
       ],
       "confidence": "high"
     }

@@ -1,50 +1,24 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-15T23:28:36.485Z",
-  "summary": "Implemented new “Share & List” UI with a listing instructions section and share utilities, plus centralized app metadata and share-intent URL builders. Some REQ-9 consistency requirements and parts of REQ-8 (footer icon href replacements/new-tab behavior) are not verifiable from the provided truncated diff.",
+  "generatedAt": "2026-02-15T23:40:36.985Z",
+  "summary": "REQ-10 is largely implemented: ListingSection now includes a one-click \"Copy submission details\" action that formats app name/description/live URL (using window.location.origin) and uses a shared clipboard helper with success state (\"Copied!\") and console error logging on failure. However, the diff excerpt does not show any rendered, visible inline error UI when copying fails.",
   "missing_requirements": [
     {
-      "id": "REQ-8",
-      "requirement": "Replace the footer social icons’ placeholder (#) hrefs with real share-intent URLs that share the current app URL, opening in a new tab.",
-      "reason": "App.tsx is truncated before the footer/social icon render code. While share-intent builders are imported, the diff summary does not include the actual anchor/link href updates (removal of href=\"#\"), target=\"_blank\", rel=\"noopener noreferrer\", or confirmation that the current app URL is prefilled.",
+      "id": "REQ-10",
+      "requirement": "If clipboard copy fails, the UI shows a visible non-crashing error state (e.g., inline message).",
+      "reason": "ListingSection.tsx sets copyError state and logs an error, but the provided diff excerpt does not show any JSX that conditionally renders an error message/state based on copyError. Because the file is truncated, this may exist below the truncation, but it is not evidenced in the shown diff.",
       "evidence": [
-        "frontend/src/App.tsx (truncated)",
-        "frontend/src/utils/shareLinks.ts"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "requirement": "Ensure the app name and a short one-sentence description are displayed consistently in the header/hero/footer and reused in the listing section without conflicting copy.",
-      "reason": "Header title text appears hardcoded as “TikTok → YouTube” rather than using appName (“TikTok to YouTube Converter”), and the hero imports appName but does not use it. Footer display of app name/description is not shown in the provided diff snippet.",
-      "evidence": [
-        "frontend/src/components/BrandHeader.tsx",
-        "frontend/src/features/converter/EmptyStateHero.tsx",
-        "frontend/src/appMetadata.ts",
-        "frontend/src/App.tsx (truncated)"
+        "frontend/src/features/market/ListingSection.tsx (truncated: shows copyError state set true/false and console.error, but no visible error rendering in shown portion)"
       ]
     }
   ],
-  "hallucinated_features": [
-    {
-      "description": "Added an email share-intent URL builder (mailto:) in shareLinks utilities.",
-      "reason": "REQ-8 only asks to update footer social icons to real share-intent URLs; email sharing is not explicitly requested in the BuildRequest.",
-      "evidence": [
-        "frontend/src/utils/shareLinks.ts"
-      ]
-    }
-  ],
+  "hallucinated_features": [],
   "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
-    "frontend/src/appMetadata.ts",
-    "frontend/src/components/BrandHeader.tsx",
-    "frontend/src/features/converter/EmptyStateHero.tsx",
     "frontend/src/features/market/ListingSection.tsx",
-    "frontend/src/features/market/ShareAndListPanel.tsx",
-    "frontend/src/features/market/ShareUtilities.tsx",
-    "frontend/src/utils/shareLinks.ts",
+    "frontend/src/utils/clipboard.ts",
     "project_state.json"
   ]
 }

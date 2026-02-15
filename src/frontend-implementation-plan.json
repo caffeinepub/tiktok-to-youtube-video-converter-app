@@ -1,98 +1,28 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add App Market listing section and share utilities",
+  "title": "Copyable Caffeine App Market submission details",
   "requirements": [
     {
-      "id": "REQ-7",
-      "summary": "Add an in-app App Market listing section with step-by-step instructions and a CTA that opens caffeine.ai in a new tab.",
+      "id": "REQ-10",
+      "summary": "Add a one-click copy action in the 'List on Caffeine App Market' card to copy a formatted block (app name, description, live URL) with clear success/failure feedback.",
       "acceptanceCriteria": [
-        "When the user views the listing section, they see step-by-step instructions written in English for listing the app in the Caffeine App Market.",
-        "A CTA button/link is present and opens https://caffeine.ai/ in a new tab (noopener noreferrer).",
-        "The listing section is reachable from the main app UI without requiring authentication."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/market/ListingSection.tsx",
-          "operation": "create",
-          "description": "Create a reusable listing section UI that: (1) presents step-by-step English instructions for listing the app in the Caffeine App Market, (2) reuses the centralized app name/description (from REQ-9), and (3) includes a prominent CTA opening https://caffeine.ai/ in a new tab with rel=\"noopener noreferrer\". Use shadcn-ui components (e.g., Card/Button/Separator) for layout and emphasis. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/market/ShareAndListPanel.tsx",
-          "operation": "create",
-          "description": "Create a composed panel that renders the new ListingSection alongside the sharing utilities UI (from REQ-8) so both are reachable from the main app UI without authentication. Use shadcn-ui components for consistent styling. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wire the new ShareAndListPanel into the existing main app UI (no authentication required) by adding an additional tab/section alongside the existing idle-state content (e.g., in the existing Tabs area currently used for history), ensuring the listing section is discoverable from the primary UI flow. Use existing shadcn-ui Tabs components. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Add sharing utilities: display current app URL, provide one-click copy with success feedback, and update footer icons to real share-intent links for the current URL.",
-      "acceptanceCriteria": [
-        "A 'Copy link' control copies window.location.href and provides visible success feedback.",
-        "Footer social icons no longer use href=\"#\" and instead open share-intent URLs in a new tab with the app URL prefilled.",
-        "All generated share URLs correctly URL-encode the app URL.",
-        "No social-media API integrations are used (only standard share-intent links)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/utils/shareLinks.ts",
-          "operation": "create",
-          "description": "Add small, reusable helpers to build standard share-intent URLs (e.g., Facebook sharer, X intent, LinkedIn share, and/or mailto) from a provided app URL and optional text. Ensure the app URL is URL-encoded via encodeURIComponent and that helpers return fully-formed URLs suitable for opening in a new tab. (No social-media API integrations.)"
-        },
-        {
-          "path": "frontend/src/features/market/ShareUtilities.tsx",
-          "operation": "create",
-          "description": "Create a sharing utilities component that: (1) displays the current app URL (window.location.href), (2) provides a one-click \"Copy link\" action using navigator.clipboard when available (with a safe fallback), and (3) shows visible success feedback (e.g., \"Copied\" state/message) after copying. Use shadcn-ui components (e.g., Card/Button) for UI consistency. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/market/ShareAndListPanel.tsx",
-          "operation": "modify",
-          "description": "Compose the ShareUtilities component into the shared panel (alongside ListingSection). Ensure copy feedback is clearly visible in the panel and that the current URL is shown. Use shadcn-ui components for layout. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Replace footer social icon placeholder href=\"#\" links with real share-intent URLs built from the current app URL (window.location.href), opened in a new tab with rel=\"noopener noreferrer\". Ensure all share URLs URL-encode the app URL and do not use any third-party integrations—only standard intent links. If any existing platform icon cannot support a standard web share intent, swap it for a platform that can while keeping the footer \"social icons\" concept intact."
-        }
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "summary": "Centralize and consistently display the app name and short description in header/hero/footer and reuse them in the listing section.",
-      "acceptanceCriteria": [
-        "The app name and a short one-sentence description are displayed consistently and reused in the listing section without duplicating conflicting copy.",
+        "In the 'List on Caffeine App Market' card, there is a button (e.g., 'Copy submission details') that copies a single, well-formatted text block containing: appName, appDescription, and the current app URL.",
+        "The copied URL uses the same value currently shown in the listing steps (i.e., window.location.origin as used in ListingSection).",
+        "On successful copy, the UI shows an affirmative confirmation state similar in clarity to the existing 'Copy Link' interaction in ShareUtilities (e.g., temporary 'Copied!' state).",
+        "If clipboard copy fails, the UI shows a visible non-crashing error state (e.g., inline message) and logs the error to the console.",
         "All user-facing text is in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/appMetadata.ts",
+          "path": "frontend/src/utils/clipboard.ts",
           "operation": "create",
-          "description": "Create a single source of truth for app metadata used throughout the UI (e.g., exported constants for appName and appDescription in English) so header/hero/footer and the listing section can reuse consistent copy without duplication."
-        },
-        {
-          "path": "frontend/src/components/BrandHeader.tsx",
-          "operation": "modify",
-          "description": "Update BrandHeader to import and display the centralized appName and appDescription from frontend/src/appMetadata.ts (English only), ensuring consistent branding. Keep existing generated logo usage intact (frontend/public/assets/generated/tt2yt-logo.dim_512x512.png)."
-        },
-        {
-          "path": "frontend/src/features/converter/EmptyStateHero.tsx",
-          "operation": "modify",
-          "description": "Update the hero section to reuse the centralized appName and/or appDescription from frontend/src/appMetadata.ts where appropriate, keeping all user-facing text in English and consistent with the header/footer. Keep existing generated hero image usage intact (frontend/public/assets/generated/tt2yt-hero.dim_1600x900.png)."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Update footer copy to use the centralized appName and appDescription (as appropriate) from frontend/src/appMetadata.ts so the app presents consistently for an App Market audience. Ensure all user-facing text remains in English and does not conflict with the header/hero copy."
+          "description": "Create a small clipboard helper (writeText with a safe fallback) that returns success/failure so UI can show 'Copied!' vs an inline error message; use this helper for copying the formatted submission details text block."
         },
         {
           "path": "frontend/src/features/market/ListingSection.tsx",
           "operation": "modify",
-          "description": "Ensure the listing section reuses the centralized appName and appDescription from frontend/src/appMetadata.ts (instead of hardcoding potentially conflicting copy) while still presenting clear step-by-step listing instructions in English. Use shadcn-ui components for consistency. Verify the component's usage instructions before implementing."
+          "description": "Use the existing shadcn-ui Button/Card layout to add a 'Copy submission details' action that copies a single formatted text block containing appName, appDescription, and window.location.origin; provide a temporary success state (e.g., 'Copied!') similar to ShareUtilities and an inline visible error state on failure while logging errors to the console. Verify the component's usage instructions before implementing."
         }
       ]
     }

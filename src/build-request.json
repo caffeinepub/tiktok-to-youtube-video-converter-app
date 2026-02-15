@@ -1,74 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Add App Market listing and sharing support",
+  "title": "Improve App Market submission flow (copyable listing details)",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-7",
-      "text": "Add an in-app section that helps the user list the TikTok → YouTube Converter app in the Caffeine App Market, including clear step-by-step instructions and a prominent call-to-action that opens caffeine.ai in a new tab for completing the listing.",
+      "id": "REQ-10",
+      "text": "Enhance the in-app Caffeine App Market listing section so the user can quickly submit the app by adding a one-click action to copy the required submission details (app name, app description, and the live app URL) to the clipboard, with clear success/failure feedback.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10"
+          "msg-4"
         ],
         "quotes": [
-          "List it"
+          "Yes submit it"
         ]
       },
       "acceptanceCriteria": [
-        "When the user views the listing section, they see step-by-step instructions written in English for listing the app in the Caffeine App Market.",
-        "A CTA button/link is present and opens https://caffeine.ai/ in a new tab (noopener noreferrer).",
-        "The listing section is reachable from the main app UI without requiring authentication."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Add sharing utilities to make the live app easy to distribute: show the current app URL, provide a one-click 'Copy link' action, and replace the footer social icons’ placeholder (#) hrefs with real share-intent URLs that share the current app URL.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-10"
-        ],
-        "quotes": [
-          "List it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Copy link' control copies window.location.href and provides visible success feedback.",
-        "Footer social icons no longer use href=\"#\" and instead open share-intent URLs in a new tab with the app URL prefilled.",
-        "All generated share URLs correctly URL-encode the app URL.",
-        "No social-media API integrations are used (only standard share-intent links)."
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Update app metadata/content where appropriate so the app presents well for an App Market audience: ensure the app name and a short description are consistently presented in the header/hero/footer and can be reused in the new listing section.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-10"
-        ],
-        "quotes": [
-          "List it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The app name and a short one-sentence description are displayed consistently and reused in the listing section without duplicating conflicting copy.",
+        "In the 'List on Caffeine App Market' card, there is a button (e.g., 'Copy submission details') that copies a single, well-formatted text block containing: appName, appDescription, and the current app URL.",
+        "The copied URL uses the same value currently shown in the listing steps (i.e., window.location.origin as used in ListingSection).",
+        "On successful copy, the UI shows an affirmative confirmation state similar in clarity to the existing 'Copy Link' interaction in ShareUtilities (e.g., temporary 'Copied!' state).",
+        "If clipboard copy fails, the UI shows a visible non-crashing error state (e.g., inline message) and logs the error to the console.",
         "All user-facing text is in English."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (compose them instead).",
-    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
-    "No third-party authentication beyond Internet Identity.",
-    "No external backends/databases/services.",
-    "Keep backend as a single Motoko actor; only add migration.mo if state schema must change."
+    "Do not modify files under frontend/src/components/ui (Shadcn UI components are read-only).",
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx.",
+    "Keep the backend as a single Motoko actor; no backend changes are required for this request."
   ],
   "nonGoals": [
-    "Implementing actual automated submission/listing to the Caffeine App Market via an API (provide guidance and outbound link only).",
-    "Implementing monetization, payments, or airdrop logic inside the app.",
-    "Adding social-media API integrations (use share-intent links only)."
+    "Automatically submitting the app to the Caffeine App Market (submission is completed by the user on caffeine.ai).",
+    "Adding or changing authentication beyond Internet Identity.",
+    "Changing the TikTok-to-MP4 conversion workflow or storing raw video bytes on the backend."
   ],
   "imageRequirements": {
     "required": [],

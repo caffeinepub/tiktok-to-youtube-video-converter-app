@@ -20,6 +20,7 @@
   "frontend/src/appMetadata.ts": "Centralized app metadata constants (appName and appDescription) used consistently across header, hero, footer, and listing sections.",
   "frontend/src/utils/shareLinks.ts": "Helper functions to build standard share-intent URLs for Facebook, X (Twitter), LinkedIn, and email with proper URL encoding.",
   "frontend/src/features/market/ShareUtilities.tsx": "Component displaying the current app URL with one-click copy functionality and visible success feedback.",
-  "frontend/src/features/market/ListingSection.tsx": "Component presenting step-by-step instructions for listing the app in the Caffeine App Market with a CTA button opening caffeine.ai in a new tab.",
-  "frontend/src/features/market/ShareAndListPanel.tsx": "Composed panel combining ShareUtilities and ListingSection components for unified sharing and listing UI."
+  "frontend/src/features/market/ListingSection.tsx": "Component presenting step-by-step instructions for listing the app in the Caffeine App Market with a one-click \"Copy Submission Details\" button that copies a formatted text block (app name, description, URL) and shows clear success/error feedback.",
+  "frontend/src/features/market/ShareAndListPanel.tsx": "Composed panel combining ShareUtilities and ListingSection components for unified sharing and listing UI.",
+  "frontend/src/utils/clipboard.ts": "Clipboard utility helper that safely writes text to clipboard with modern API and fallback support, returning a boolean promise to indicate success or failure."
 }

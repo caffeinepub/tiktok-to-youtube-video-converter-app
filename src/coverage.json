@@ -1,63 +1,25 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-15T23:28:36.488Z",
+  "generatedAt": "2026-02-15T23:40:36.987Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-7",
-        "summary": "Add an in-app section that helps the user list the TikTok → YouTube Converter app in the Caffeine App Market, including clear step-by-step instructions and a prominent call-to-action that opens caffeine.ai in a new tab for completing the listing.",
+        "id": "REQ-10",
+        "summary": "Enhance the in-app Caffeine App Market listing section so the user can quickly submit the app by adding a one-click action to copy the required submission details (app name, app description, and the live app URL) to the clipboard, with clear success/failure feedback.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/features/market/ListingSection.tsx",
-          "frontend/src/features/market/ShareAndListPanel.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/features/market/ListingSection.tsx",
-          "frontend/src/features/market/ShareAndListPanel.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Add sharing utilities to make the live app easy to distribute: show the current app URL, provide a one-click 'Copy link' action, and replace the footer social icons’ placeholder (#) hrefs with real share-intent URLs that share the current app URL.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/utils/shareLinks.ts",
-          "frontend/src/features/market/ShareUtilities.tsx",
-          "frontend/src/features/market/ShareAndListPanel.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/utils/shareLinks.ts",
-          "frontend/src/features/market/ShareUtilities.tsx",
-          "frontend/src/features/market/ShareAndListPanel.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Update app metadata/content where appropriate so the app presents well for an App Market audience: ensure the app name and a short description are consistently presented in the header/hero/footer and can be reused in the new listing section.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/appMetadata.ts",
-          "frontend/src/components/BrandHeader.tsx",
-          "frontend/src/features/converter/EmptyStateHero.tsx",
-          "frontend/src/App.tsx",
+          "frontend/src/utils/clipboard.ts",
           "frontend/src/features/market/ListingSection.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/appMetadata.ts",
-          "frontend/src/components/BrandHeader.tsx",
-          "frontend/src/features/converter/EmptyStateHero.tsx",
-          "frontend/src/App.tsx",
+          "frontend/src/utils/clipboard.ts",
           "frontend/src/features/market/ListingSection.tsx"
         ]
       }
@@ -65,18 +27,11 @@
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/appMetadata.ts",
-    "frontend/src/components/BrandHeader.tsx",
-    "frontend/src/features/converter/EmptyStateHero.tsx",
     "frontend/src/features/market/ListingSection.tsx",
-    "frontend/src/features/market/ShareAndListPanel.tsx",
-    "frontend/src/features/market/ShareUtilities.tsx",
-    "frontend/src/utils/shareLinks.ts",
+    "frontend/src/utils/clipboard.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -1,10 +1,36 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ExternalLink, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Copy, Check } from 'lucide-react';
 import { appName, appDescription } from '@/appMetadata';
+import { writeTextToClipboard } from '@/utils/clipboard';
 
 export function ListingSection() {
+  const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+
+  const handleCopySubmissionDetails = async () => {
+    const appUrl = typeof window !== 'undefined' ? window.location.origin : '';
+    const submissionText = `App Name: ${appName}
+
+Description: ${appDescription}
+
+Live URL: ${appUrl}`;
+
+    const success = await writeTextToClipboard(submissionText);
+
+    if (success) {
+      setCopied(true);
+      setCopyError(false);
+      setTimeout(() => setCopied(false), 2000);
+    } else {
+      setCopyError(true);
+      setTimeout(() => setCopyError(false), 3000);
+      console.error('Failed to copy submission details to clipboard');
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -65,6 +91,24 @@ export function ListingSection() {
 
         <div className="flex flex-col sm:flex-row gap-3">
           <Button
+            onClick={handleCopySubmissionDetails}
+            variant={copied ? 'default' : 'outline'}
+            size="lg"
+            className="flex-1"
+          >
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 mr-2" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 mr-2" />
+                Copy Submission Details
+              </>
+            )}
+          </Button>
+          <Button
             asChild
             size="lg"
             className="flex-1"
@@ -79,6 +123,18 @@ export function ListingSection() {
             </a>
           </Button>
         </div>
+
+        {copied && (
+          <p className="text-sm text-success font-medium">
+            Submission details copied to clipboard!
+          </p>
+        )}
+
+        {copyError && (
+          <p className="text-sm text-destructive font-medium">
+            Failed to copy to clipboard. Please try again or copy the details manually from Step 3.
+          </p>
+        )}
 
         <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
           <p>

@@ -1,9 +1,10 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 9,
   "summary": "Build a TikTok-to-YouTube video converter app.",
   "architectural_notes": [
-    "Plan for App Market listing/submission workflow (metadata, publishing, and distribution link)."
+    "Plan for App Market listing/submission workflow (metadata, publishing, and distribution link).",
+    "User approved proceeding with Caffeine App Market submission/listing."
   ],
   "known_issues": [],
   "isFixRequest": false,
@@ -79,6 +80,14 @@
         "REQ-9"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-enhance-the-in-app-caffeine-app-market-listing-section-so-the-user-can-quickly-submit-the-app-by-adding-a-one-click-action-to-copy-the-required-submission-details-app-name-app-description-and-the-live-app-url-to-the-clipboard-with-clear-success-failure-feedback",
+      "title": "Enhance the in-app Caffeine App Market listing section so the user can quickly submit the app by adding a one-click action to copy the required submission details (app name, app description, and the live app URL) to the clipboard, with clear success/failure feedback.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -92,7 +101,7 @@
       "id": "AR-2",
       "summary": "Submit/list the app in the Caffeine App Market so it can be shared and potentially monetized (airdrop eligibility).",
       "reqIds": [],
-      "status": "pending"
+      "status": "in_progress"
     }
   ],
   "gameProjectType": "none",
